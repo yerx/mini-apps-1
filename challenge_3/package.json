@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/yerx/hrr43-mini-apps-1#readme",
   "dependencies": {
+    "axios": "^0.19.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "mongodb": "^3.5.0",
