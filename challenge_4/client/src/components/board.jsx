@@ -9,6 +9,8 @@ class Board extends React.Component {
     this.state = {
       squares: Array(16).fill(null),
       xIsNext: true,
+      xIsRed: false,
+      oIsBlue: false
     };
     // this.handleClick = this.handleClick.bind(this);
   }
@@ -18,13 +20,20 @@ class Board extends React.Component {
     if (findWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = this.state.xIsNext ? "X" : "Y";
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
     });
     console.log('squares', squares);
+    // changeColor(squares[i]);
+    // if this.state.xIsNext ? this.setState
   }
+
+  // implement color change on click
+  // changeColor(square) {
+
+  // }
 
   renderSquare(i) {
     return(
@@ -41,7 +50,7 @@ class Board extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'Y');
     }
 
     return(
@@ -70,7 +79,7 @@ class Board extends React.Component {
         <div className="board-row">
           {this.renderSquare(12)}
           {this.renderSquare(13)}
-          {this.renderSquare(13)}
+          {this.renderSquare(14)}
           {this.renderSquare(15)}
         </div>
       </div>
@@ -96,7 +105,7 @@ const findWinner = (array) => {
       if (value === "X") {
           xIndex.push(index);
       }
-      if (value === "O") {
+      if (value === "Y") {
           oIndex.push(index);
       }
   })
@@ -106,7 +115,7 @@ const findWinner = (array) => {
       return "X";
     }
     if (JSON.stringify(winningCombos[i]) === JSON.stringify(oIndex)) {
-      return "O";
+      return "Y";
     }
   }
   return null;
