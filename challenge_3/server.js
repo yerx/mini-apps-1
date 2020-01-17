@@ -10,9 +10,3 @@ app.use(express.static('./public'));
 // })
 
 app.listen(port, () => console.log(`Listening on ${port}`));
-
-
-
-// Error: Cannot find module '/Users/yerxiong/code/yer-space/HRR43/hrr43-mini-apps-1/challenge_3/server'
-
-// /Users/yerxiong/code/yer-space/HRR43/hrr43-mini-apps-1/challenge_3/server

@@ -22,8 +22,6 @@ class App extends React.Component {
       billingZipCode: ''
     }
 
-
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickNext = this.handleClickNext.bind(this);
@@ -32,13 +30,15 @@ class App extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert('form submitted');
     // return promise resolve to create a chain event
     // post data to database
+      // copy this.state and remove the first property of current step
     // get data from database
     // take the data and render it to the summary form component
 
-
+    let currentForm = this.state.currentForm;
+    currentForm++;
+    this.setState({currentForm: currentForm});
   }
 
   handleChange(event) {
@@ -72,6 +72,20 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleClickNext={this.handleClickNext}
           handleSubmit={this.handleSubmit} />
+          <SummaryForm
+          currentForm={this.state.currentForm}
+          firstName={this.state.firstName}
+          lastName={this.state.lastName}
+          email={this.state.email}
+          shipToAddressLine1={this.state.shipToAddressLine1}
+          shipToAddressLine2={this.state.shipToAddressLine2}
+          shipToAddressCity={this.state.shipToAddressCity}
+          shipToAddressState={this.shipToAddressState}
+          shipToAddressZipCode={this.state.shipToAddressZipCode}
+          phoneNumber={this.state.phoneNumber}
+          creditCard={this.state.creditCard}
+          billingZipCode={this.state.billingZipCode}
+          />
       </div>
     )
   }
@@ -220,6 +234,30 @@ const Form3 = ({currentForm, handleChange, handleClickNext, handleSubmit}) => {
     </div>
 
   )
+}
+
+const SummaryForm = ({currentForm, firstName, lastName, email, shipToAddressLine1, shipToAddressLine2, shipToAddressCity, shipToAddressState, shipToAddressZipCode, phoneNumber, billingZipCode}) => {
+  if (currentForm !== 4) {
+    return null;
+  }
+
+  return (
+    <div>
+      <h2>Summary</h2>
+      <p>First Name: {firstName}</p>
+      <p>Last Name: {lastName}</p>
+      <p>Email: {email}</p>
+      <p>Shipping Information</p>
+      <p>Address Line 1: {shipToAddressLine1}</p>
+      <p>Address Line 2: {shipToAddressLine2}</p>
+      <p>City: {shipToAddressCity}</p>
+      <p>State: {shipToAddressState}</p>
+      <p>Zip Code: {shipToAddressZipCode}</p>
+      <p>Phone Number: {phoneNumber}</p>
+      <p>Billing Zip Code: {billingZipCode}</p>
+    </div>
+  )
+
 }
 
 
